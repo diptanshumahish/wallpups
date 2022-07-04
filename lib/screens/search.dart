@@ -96,8 +96,9 @@ class SearchPage extends StatelessWidget {
           shrinkWrap: true,
           children: [
             SafeArea(
+              bottom: false,
               child: SizedBox(
-                height: 40,
+                height: 50,
                 child: Center(
                     child: Text("Explore",
                         style: TextStyle(
@@ -107,7 +108,7 @@ class SearchPage extends StatelessWidget {
                             letterSpacing: 1.3))),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 5),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
               child: CupertinoSearchTextField(
@@ -128,8 +129,8 @@ class SearchPage extends StatelessWidget {
                     style: TextStyle(
                         color: AppColors.mainText,
                         fontSize: 25,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 1),
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5),
                   )),
             ),
             SizedBox(

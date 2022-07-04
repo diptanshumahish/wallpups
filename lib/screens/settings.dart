@@ -19,10 +19,6 @@ class _SettingsPageState extends State<SettingsPage> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon: const Icon(CupertinoIcons.back),
-          onPressed: () => Navigator.pop(context, false),
-        ),
         title: const Text(
           "Settings",
           style: TextStyle(
@@ -34,16 +30,51 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            InkWell(
-              child: Text(
-                "text1",
-                style: TextStyle(
-                    color: AppColors.mainText, fontWeight: FontWeight.w700),
-              ),
-            )
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          children: [
+            Container(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Storage Directory",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 20)),
+                SizedBox(height: 5),
+                Text("Set the storage directory of your wallpapers",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 10)),
+                SizedBox(height: 20),
+//item 2
+                Text("Report bugs",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 20)),
+                SizedBox(height: 5),
+                Text("Let us know the bugs you found",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 10)),
+                SizedBox(height: 20),
+                //rate us
+                Text("Rate us ",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 20)),
+                SizedBox(height: 5),
+                Text("what dio you  think of the App?",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 10)),
+                SizedBox(height: 20),
+
+                //image quality
+                Text("Set the image quality",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 20)),
+                SizedBox(height: 5),
+                Text("Set the image qulaity of the wallpapers",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 10)),
+                SizedBox(height: 20),
+                //support
+                Text("Support the developer",
+                    style:
+                        TextStyle(color: AppColors.themeColors, fontSize: 20)),
+                SizedBox(height: 5),
+                Text(" help us grow :)",
+                    style: TextStyle(color: AppColors.mainText, fontSize: 10)),
+                SizedBox(height: 20),
+              ],
+            ))
           ],
         ),
       ),
