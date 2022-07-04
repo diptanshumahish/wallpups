@@ -1,17 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wallpaper/wallpaper.dart';
 import 'package:wallpups/wallpapermodel.dart';
-
 import '../utils/theme.dart';
 
 // ignore: must_be_immutable
-class FullImage extends StatelessWidget {
+class FullImage extends StatefulWidget {
   late int index;
   FullImage({Key? key, required this.index}) : super(key: key);
 
   @override
+  State<FullImage> createState() => _FullImageState();
+}
+
+class _FullImageState extends State<FullImage> {
+  //new wallpaper setting method:
+  String home = "Home Screen", lock = "Lock Screen";
+  Stream<String>? progressString;
+  String? res;
+  bool downloading = false;
+  var result = "waiting to set wallpaper...";
+  bool _isDisable = true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  //above this
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.mainBackgroundColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
@@ -36,7 +57,8 @@ class FullImage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(wallPaper[index]), fit: BoxFit.fill),
+                  image: NetworkImage(wallPaper[widget.index]),
+                  fit: BoxFit.cover),
             ),
           ),
           Positioned(
@@ -66,7 +88,22 @@ class FullImage extends StatelessWidget {
                           letterSpacing: 0.4,
                           fontSize: 14),
                     ),
-                    InkWell(
+                    GestureDetector(
+                      onTap: _isDisable
+                          ? null
+                          : () async {
+                              var width = MediaQuery.of(context).size.width;
+                              var height = MediaQuery.of(context).size.height;
+                              home = await Wallpaper.homeScreen(
+                                  options: RequestSizeOptions.RESIZE_FIT,
+                                  width: width,
+                                  height: height);
+                              setState(() {
+                                downloading = false;
+                                home = home;
+                              });
+                              print("Task Done");
+                            },
                       child: Container(
                         margin: const EdgeInsets.symmetric(vertical: 10),
                         padding: const EdgeInsets.symmetric(
@@ -107,7 +144,10 @@ class FullImage extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         GestureDetector(
-                          child: const Icon(CupertinoIcons.lightbulb,
+                          onTap: () async {
+                            return await dowloadImage(widget.index);
+                          },
+                          child: const Icon(CupertinoIcons.download_circle,
                               color: AppColors.mainText, size: 20),
                         ),
                         const SizedBox(width: 10),
@@ -123,5 +163,29 @@ class FullImage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> dowloadImage(int index) async {
+    progressString = Wallpaper.imageDownloadProgress(wallPaper[index]);
+    progressString?.listen((data) {
+      setState(() {
+        res = data;
+        downloading = true;
+      });
+      print("DataReceived: " + data);
+    }, onDone: () async {
+      setState(() {
+        downloading = false;
+
+        _isDisable = false;
+      });
+      print("Task Done");
+    }, onError: (error) {
+      setState(() {
+        downloading = false;
+        _isDisable = true;
+      });
+      print("Some Error");
+    });
   }
 }
