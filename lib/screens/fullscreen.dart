@@ -15,17 +15,17 @@ class FullImage extends StatefulWidget {
 
 class _FullImageState extends State<FullImage> {
   //new wallpaper setting method:
-  String home = "Home Screen", lock = "Lock Screen";
-  Stream<String>? progressString;
-  String? res;
-  bool downloading = false;
-  var result = "waiting to set wallpaper...";
-  bool _isDisable = true;
+  // String home = "Home Screen", lock = "Lock Screen";
+  // Stream<String>? progressString;
+  // String? res;
+  // bool downloading = false;
+  // var result = "waiting to set wallpaper...";
+  // bool _isDisable = true;
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   //above this
 
@@ -89,21 +89,21 @@ class _FullImageState extends State<FullImage> {
                           fontSize: 14),
                     ),
                     GestureDetector(
-                      onTap: _isDisable
-                          ? null
-                          : () async {
-                              var width = MediaQuery.of(context).size.width;
-                              var height = MediaQuery.of(context).size.height;
-                              home = await Wallpaper.homeScreen(
-                                  options: RequestSizeOptions.RESIZE_FIT,
-                                  width: width,
-                                  height: height);
-                              setState(() {
-                                downloading = false;
-                                home = home;
-                              });
-                              print("Task Done");
-                            },
+                      // onTap: _isDisable
+                      //     ? null
+                      //     : () async {
+                      //         var width = MediaQuery.of(context).size.width;
+                      //         var height = MediaQuery.of(context).size.height;
+                      //         home = await Wallpaper.homeScreen(
+                      //             options: RequestSizeOptions.RESIZE_FIT,
+                      //             width: width,
+                      //             height: height);
+                      //         setState(() {
+                      //           downloading = false;
+                      //           home = home;
+                      //         });
+                      //         print("Task Done");
+                      //       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(vertical: 10),
                         padding: const EdgeInsets.symmetric(
@@ -145,7 +145,7 @@ class _FullImageState extends State<FullImage> {
                         const SizedBox(width: 10),
                         GestureDetector(
                           onTap: () async {
-                            return await dowloadImage(widget.index);
+                            // return await dowloadImage(widget.index);
                           },
                           child: const Icon(CupertinoIcons.download_circle,
                               color: AppColors.mainText, size: 20),
@@ -165,27 +165,27 @@ class _FullImageState extends State<FullImage> {
     );
   }
 
-  Future<void> dowloadImage(int index) async {
-    progressString = Wallpaper.imageDownloadProgress(wallPaper[index]);
-    progressString?.listen((data) {
-      setState(() {
-        res = data;
-        downloading = true;
-      });
-      print("DataReceived: " + data);
-    }, onDone: () async {
-      setState(() {
-        downloading = false;
+//   Future<void> dowloadImage(int index) async {
+//     progressString = Wallpaper.imageDownloadProgress(wallPaper[index]);
+//     progressString?.listen((data) {
+//       setState(() {
+//         res = data;
+//         downloading = true;
+//       });
+//       print("DataReceived: " + data);
+//     }, onDone: () async {
+//       setState(() {
+//         downloading = false;
 
-        _isDisable = false;
-      });
-      print("Task Done");
-    }, onError: (error) {
-      setState(() {
-        downloading = false;
-        _isDisable = true;
-      });
-      print("Some Error");
-    });
-  }
+//         _isDisable = false;
+//       });
+//       print("Task Done");
+//     }, onError: (error) {
+//       setState(() {
+//         downloading = false;
+//         _isDisable = true;
+//       });
+//       print("Some Error");
+//     });
+//   }
 }

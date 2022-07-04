@@ -5,6 +5,6 @@ class WallpaperModel {
 }
 
 var wallPaper = List.generate(
-    10000,
+    100,
     ((index) =>
         "https://source.unsplash.com/random/1080x1920/?wallpapers/$index"));
