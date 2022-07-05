@@ -1,16 +1,30 @@
-# wallpaperr
 
-A new Flutter project.
+# Wallpups
 
-## Getting Started
+Wallpups is a multi-platform open source app being developed using Flutter.
 
-This project is a starting point for a Flutter application.
+This App mainly focuses on an innovative and beautiful User Interface, and is basically a 
+wallpaper app, which for the time collects data using the random image generator provided
+by Unsplash.
 
-A few resources to get you started if this is your first Flutter project:
+Later on I have plans to merge this with a proper backend and make it a 100% working app
+and maybe launch it on platforms.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Authors
+
+- [@diptanshumahish](https://www.github.com/diptanshumahish)
+
+
+## Features
+
+- Beautiful UI
+- Beautiful Wallpapers colllection
+- Free to use
+- Cross platform
+
+
+## Screenshots
+
+![App Screenshot](https://i.im.ge/2022/07/05/u0Ycn1.png)
+![App Screenshot](https://i.im.ge/2022/07/05/u0YfRT.png)
